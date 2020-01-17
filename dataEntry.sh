@@ -30,7 +30,8 @@ construct() {
   # args="'$item', $price, '$date', '$store', '$category', $qty, '$unit'"
   # sqlite3 grocery.db 'INSERT INTO grocerylist values($args);'
   echo "adding to database" sqlite3 grocery.db "insert into grocerylist (\"$item\",$price,\"$date\",\"$store\",\"$category\",$qty,\"$unit\");"
-  sqlite3 grocery.db 'insert into grocerylist ("$item",$price,"$date","$store","$category",$qty,"$unit");'
+  sqlite3 grocery.db "insert into grocerylist ('$item',$price,'$date','$store','$category',$qty,'$unit');"
+#  sqlite3 grocery.db "insert into grocerylist ("$item","$price","$date","$store","$category","$qty","$unit");"
   read -p "Continue? (y or n): " CHOICE
 }
 
