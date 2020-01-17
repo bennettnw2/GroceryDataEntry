@@ -25,7 +25,15 @@ I got a skeleton of a program together.  The logic works so far and to my surpri
   Same result...lets try swapping out the double quotes for the single quotes and no quotes around the "floating" numbers (i forget what they are called) 
 sqlite3 grocery.db "insert into grocerylist ('$item',$price,'$date','$store','$category',$qty,'$unit');"
 No dice with this one either
+
 What I will try is a test database with one entry and hard code everything!
+
+Schema for the test databases:
+```
+CREATE TABLE testdel (word text not null, number integer not null);
+CREATE TABLE testdel2 (word text not null, number integer not null, word2 text not null);
+CREATE TABLE testdel3 (number integer not null);
+```
 
 Test:
 `sqlite3 testDelete.db insert into testdel values("word", 3);`
@@ -75,3 +83,59 @@ word|3|bird
 That worked too!
 
 Now I'll need to pass variables into the command as it works when hard coded
+
+Test:
+```
+var1=word
+var2=3
+var3=bird
+sqlite3 testDelete.db 'insert into testdel2 values("$var1", $var2, "$var3");'
+```
+Result:
+```
+$ ./test.sh
+Inserting into testDB
+Error: NOT NULL constraint failed: testdel2.number
+```
+Hmmm, lets dial it back to one integer to pass into a third table
+
+Test:
+```
+var1=word
+var2=3
+var3=bird
+sqlite3 testDelete.db 'insert into testdel3 values($var2);'
+```
+Result:
+```
+$ ./test.sh
+Inserting into testDB
+Error: NOT NULL constraint failed: testdel3.number
+```
+This is odd as I was not getting this error ever...
+
+Ok!  So after a bit of just testing a bunch of different stuff I figured it out.  Well, not me personally but StackOverflow helped me out. [How to Insert into Sqlite Using Bash](https://stackoverflow.com/questions/4152321/how-to-insert-into-sqlite-database-using-bash)
+I attempted to use this post's method before but I ~think I must have~ obviously had a syntactial error as It was not working.
+
+Test:
+```
+#!/bin/bash
+
+echo "Inserting into testDB"
+var1=word
+var2=3
+var3=bird
+sqlite3 testDelete.db "insert into testdel2 values (\"$var1\", $var2, \"$var3\");"
+```
+Result:
+```
+$ ./test.sh
+Inserting into testDB
+___________________ JavaDev | bennettnw2 ~/GroceryDataEntry
+$ sqlite3 testDelete.db "select * from testdel2";
+word|3|bird
+word|3|bird
+```
+
+
+What did I learn?  Break down complex problems into small isolated parts and test different stuff systematically until you read the same stackoverflow post for the 6th time and then it works!  I think it still helped to keep track of what I tested so I could keep everything straight.  So now on to get it to work with my bigger input string.
