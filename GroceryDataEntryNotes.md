@@ -139,3 +139,11 @@ word|3|bird
 
 
 What did I learn?  Break down complex problems into small isolated parts and test different stuff systematically until you read the same stackoverflow post for the 6th time and then it works!  I think it still helped to keep track of what I tested so I could keep everything straight.  So now on to get it to work with my bigger input string.
+
+
+Sun Jan 19 10:17:52 EST 2020
+So I got the dataEntry.sh to work and to be able to add rows to the table.  Next is working on the logic flow a bit and get more funtionality.  Right now you are able to start a session by entering the date and store of a recipt and the script will continue to add the date and the store so you do not have to enter it in over and over again with each recipt.  But does not have the functionality to where you can start a new recipt without exiting the program.  That is the next step.
+
+
+Sun Jan 19 13:22:41 EST 2020
+Ok.  So next step this time around is to get the logic of the looping correct.  It seems I may have created a recursive function?  I'll have to get the looping get into the c selection.
