@@ -104,7 +104,7 @@ Test:
 var1=word
 var2=3
 var3=bird
-sqlite3 testDelete.db 'insert into testdel3 values($var2);'
+qlite3 testDelete.db 'insert into testdel3 values($var2);'
 ```
 Result:
 ```
@@ -115,7 +115,7 @@ Error: NOT NULL constraint failed: testdel3.number
 This is odd as I was not getting this error ever...
 
 Ok!  So after a bit of just testing a bunch of different stuff I figured it out.  Well, not me personally but StackOverflow helped me out. [How to Insert into Sqlite Using Bash](https://stackoverflow.com/questions/4152321/how-to-insert-into-sqlite-database-using-bash)
-I attempted to use this post's method before but I ~think I must have~ obviously had a syntactial error as It was not working.
+I attempted to use this post's method before but I ~think I must have~ obviously had a syntactical error as It was not working.
 
 Test:
 ```
@@ -142,8 +142,23 @@ What did I learn?  Break down complex problems into small isolated parts and tes
 
 
 Sun Jan 19 10:17:52 EST 2020
-So I got the dataEntry.sh to work and to be able to add rows to the table.  Next is working on the logic flow a bit and get more funtionality.  Right now you are able to start a session by entering the date and store of a recipt and the script will continue to add the date and the store so you do not have to enter it in over and over again with each recipt.  But does not have the functionality to where you can start a new recipt without exiting the program.  That is the next step.
+So I got the dataEntry.sh to work and to be able to add rows to the table.  Next is working on the logic flow a bit and get more functionality.  Right now you are able to start a session by entering the date and store of a receipt and the script will continue to add the date and the store so you do not have to enter it in over and over again with each receipt.  But does not have the functionality to where you can start a new receipt without exiting the program.  That is the next step.
 
 
 Sun Jan 19 13:22:41 EST 2020
 Ok.  So next step this time around is to get the logic of the looping correct.  It seems I may have created a recursive function?  I'll have to get the looping get into the c selection.
+
+
+Mon Jan 20 13:20:41 EST 2020
+Wow.  This is complicated for some reason.  I think I may need to do a case statement?  This is what I want to do.  Have the user enter in c to continue, r for new receipt and q for quit
+
+So not so bad now that I used a case statement! I finally got the logic I wanted and it now works! Used this video for support in making a menu with a case statement.  [Youtube Link](https://www.youtube.com/watch?v=7GvAJhcjNOs)
+
+Added an option to repeat an entry also need to be able to enter in data without entering a quantity and unit.  Right now I get the error:
+```bash
+OrgBabySpinach 2.49 Produce
+adding to database sqlite3 grocery.db insert into grocerylist ("OrgBabySpinach",2.49,"12/15/2019","Aldi","Produce",,"");
+Error: near ",": syntax error
+```
+Seems this is due to the commas next to each other... maybe able to resolve that by placing quotes around the variable so that it will just pass an empty string....
+Entered in the first receipt and so far so good!
