@@ -162,3 +162,7 @@ Error: near ",": syntax error
 ```
 Seems this is due to the commas next to each other... maybe able to resolve that by placing quotes around the variable so that it will just pass an empty string....
 Entered in the first receipt and so far so good!
+
+
+Thu Jan 23 19:05:06 EST 2020
+So I've entered in about 6 receipts so far and I think I have a good dozen and a half left.  I'll continue to enter in data until done and then it is time to start to play with the data and see what insights I can uncover.  I'll tell you what, I normally don't look at the prices while I shop but seeing them as I enter them gives me a better idea of what is going on with food prices.  Not to mention the categories of food that I enter repeatedly, like dairy(cheese) and snacks.  Anywho, the bash script is holding up well and I have not crashed it yet!

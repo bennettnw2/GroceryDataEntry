@@ -17,7 +17,7 @@ entryVary() {
 
 # construct the string to enter the data into the database
 construct() {
-  echo "adding to database" sqlite3 grocery.db "insert into grocerylist (\"$item\",$price,\"$date\",\"$store\",\"$cat\",$qty,\"$unit\");"
+  echo "adding to database(\"$item\",$price,\"$date\",\"$store\",\"$cat\",$qty,\"$unit\");"
   sqlite3 grocery.db "insert into grocerylist values (\"$item\",$price,\"$date\",\"$store\",\"$cat\",$qty,\"$unit\");"
 }
 
@@ -47,6 +47,7 @@ do
     ;;
     cl)
     clear
+    entryVary
     ;;
     q)
     echo "See you later!"
